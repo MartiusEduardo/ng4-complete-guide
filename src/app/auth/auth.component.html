@@ -1,0 +1,26 @@
+<div class="container text-center">
+    <div class="row justify-content-center">
+        <form (ngSubmit)="onSubmit(authForm)" #authForm="ngForm">
+            <div class="col-md-4 offset-md-4">
+                <div class="alert alert-danger" *ngIf="error">
+                    <p>{{ error }}</p>
+                </div>
+                <h1>Please sign in</h1>
+                <div class="form-floating">
+                    <input type="email" id="email" class="form-control" name="email" ngModel required email>
+                    <label for="email">Email address:</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" id="password" class="form-control" name="password" ngModel required minlength="6">
+                    <label for="password">Password:</label>
+                </div>
+                <div class="form-check text-start my-3">
+                    <input type="checkbox" id="rememberMe">
+                    <label for="rememberMe" class="form-check-label">Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="!authForm.valid">Sign in</button>&nbsp;
+                <button type="button" class="btn btn-primary" (click)="onSignUp(authForm)" [disabled]="!authForm.valid">Sign Up</button>
+            </div>
+        </form>
+    </div>
+</div>

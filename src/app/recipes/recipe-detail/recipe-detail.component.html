@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-xs-12">
+        <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-responsive">
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h1>{{ recipe.name }}</h1>
+    </div>
+</div>
+<div class="row" (mouseleave)="collapsed = false">
+    <div class="col-xs-12">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" 
+                (click)="collapsed = !collapsed">
+                Manage Recipe <span class="coret"></span>
+            </button>
+            <ul class="dropdown-menu text-small shadow" appDropdown [dCollapsed]="collapsed">
+                <li><a class="dropdown-item rounded-2" (click)="onAddIngredientsToShoppingList(recipe.ingredients)">
+                    To Shopping List</a></li>
+                <!-- <li><a class="dropdown-item rounded-2" [routerLink]="['/recipes', recipe.id, 'edit']"> -->
+                <li><a class="dropdown-item rounded-2" (click)="onEditRecipe()">
+                    Edit Recipe</a></li>
+                <li><a class="dropdown-item rounded-2" (click)="onDeleteRecipe()">
+                    Delete Recipe</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+       <p> Description: {{ recipe.description }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h4>Ingredients</h4>
+        <ul class="list-group">
+            <li class="list-group">
+                <a href="#" class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+                    {{ ingredient.name }} ({{ ingredient.amount }})
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

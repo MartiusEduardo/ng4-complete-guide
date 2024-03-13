@@ -1,0 +1,40 @@
+<div class="container" (mouseleave)="hCollapsed = false">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+        <div class="col-md-3 mb-2 mb-md-0">
+            <a class="d-inline-flex link-body-emphasis text-decoration-none" routerLink="/">
+                Recipe Book
+            </a>
+        </div>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li>
+                <a class="nav-link px-2" routerLinkActive="link-secondary" routerLink="/recipes" *ngIf="isAuthenticated">
+                    Recipes
+                </a>
+            </li>
+            <li>
+                <a class="nav-link px-2" routerLinkActive="link-secondary" [routerLink]="['/shopping-list']">
+                    Shopping List
+                </a>
+            </li>
+            <li>
+                <a class="nav-link px-2" routerLinkActive="link-secondary" routerLink="auth" *ngIf="!isAuthenticated">
+                    Authentication
+                </a>
+            </li>
+        </ul>
+        <div class="dropdown row align-items-center text-end">
+            <div class="col" *ngIf="isAuthenticated">
+                <a (click)="onLogout()">Logout</a>
+            </div>
+            <div class=" dropdown col" *ngIf="isAuthenticated">
+                <a class="d-block link-body-emphasis text-decoration-none dropdown-toggle" (click)="hCollapsed = !hCollapsed">
+                    Manage
+                </a>
+                <ul class="dropdown-menu text-small shadow" appDropdown [dCollapsed]="hCollapsed">
+                    <li><a class="dropdown-item" (click)="onSaveData()">Save Data</a></li>
+                    <li><a class="dropdown-item" (click)="onFetchData()">Fetch Data</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+</div>
